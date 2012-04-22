@@ -30,7 +30,7 @@ tic tac toe example of the omnet tutorial.
 We build a message by creating a [name].msg text file.
 The text file looks like this:
 
-```c++
+```
 message [name]
 {
   fields:
