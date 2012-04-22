@@ -66,7 +66,7 @@ switch (mode)
     while(true) 
     {
     //In c++ switch can go into while scope
-      mode=1:
+      mode=1;
       case 1:    
       // if stopping exit the function other wise continue
       if (stop_func()) retrun;
