@@ -67,7 +67,7 @@ switch (mode)
       mode=1;
       case 1:    
       // if stopping exit the function other wise continue
-      if (stop_func()) retrun;
+      if (stop_func()) return;
     }
   }
 }
