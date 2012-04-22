@@ -179,7 +179,7 @@ mode=[number];
 case [number]:
 if (wait()) return;
 ```
-Some where else we put:
+Somewhere else we put:
 ```c++
 tr.notify();
 ```
