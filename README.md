@@ -103,7 +103,7 @@ It also support sleep by:
 ```c++
 mode=[number];
 case [number]:
-if (sleep(time)) return
+if (sleep(time)) return;
 ```
 
 `string getName()` - return the name of the node.
