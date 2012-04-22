@@ -106,10 +106,10 @@ case [number]:
 if (sleep(time)) return;
 ```
 
-`string getName()` - return the name of the node.
+`string getName()` - return the name of the node.   
 `float getTime()` - return the time in seconds.
 
-Output can be done by:
+Output can be done by:   
 `ev` - It is like `cout` print the streams to the console; for example: `ev<<getName<<" get the message"<<"\n";`
 show - It show a text bubble on the node; for example: `show("send msg")`
 
