@@ -59,10 +59,8 @@ void run()
 {
 switch (mode)
   {
-    mode=0;
     case 0:
-    
-    //Start of the function
+
     while(true) 
     {
     //In c++ switch can go into while scope
