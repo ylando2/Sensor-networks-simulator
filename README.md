@@ -111,7 +111,7 @@ if (sleep(time)) return;
 
 Output can be done by:   
 `ev` - It is like `cout` print the streams to the console; for example: `ev<<getName<<" get the message"<<"\n";`   
-show - It show a text bubble on the node; for example: `show("send msg")`
+`show` - It show a text bubble on the node; for example: `show("send msg")`
 
 Using the protocol:
 --------------------------
@@ -135,7 +135,7 @@ The threads need to receive the message by `getMsg("message name")` so
 we use `dispatch(data);` transfer the message to the threads.
 If we do that make sure that we do not delete the message.
 
-Adding a protocol to the program is done by the function `addProtocol("protocolName",Protocol obj);`
+Adding a protocol to the program is done by the function `addProtocol("protocolName",Protocol *obj);`
 We can make the program automatic delete the protocol by adding star to the end of it's name; 
 for example: `addProtocol("myProtocol*",new myProtocol());`
 
