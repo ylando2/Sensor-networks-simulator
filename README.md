@@ -123,7 +123,7 @@ Send it away by: `emu->sendBytes(protocolMsg)`
 In the end we must delete the message by: `delete protocolMsg;`
 
 `void stackReceive(cMessage *msg)` - get a message.
-Unwarp it by: `myMsg *data=static_cast<myMsg>(msg->encapsulatedMsg());
+Unwarp it by: `myMsg *data=static_cast<myMsg>(msg->encapsulatedMsg());   
 Free and delete the warper by:
 ```c++
 msg->decapsulate();
