@@ -110,7 +110,7 @@ if (sleep(time)) return;
 `float getTime()` - return the time in seconds.
 
 Output can be done by:   
-`ev` - It is like `cout` print the streams to the console; for example: `ev<<getName<<" get the message"<<"\n";`
+`ev` - It is like `cout` print the streams to the console; for example: `ev<<getName<<" get the message"<<"\n";`   
 show - It show a text bubble on the node; for example: `show("send msg")`
 
 Using the protocol:
