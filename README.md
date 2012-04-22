@@ -30,7 +30,7 @@ tic tac toe example of the omnet tutorial.
 We build a message by creating a [name].msg text file.
 The text file looks like this:
 
-{{{
+```c++
 message [name]
 {
   fields:
@@ -38,7 +38,7 @@ message [name]
   [type_in_c2] [name_of_var2]
   ...
 } 
-}}}
+```
 
 Now we can make it generate automatically:
 `[name]_m.cpp` and `[name]_m.h` files.
@@ -54,7 +54,7 @@ Programming the simulator:
 ------------------------------
 We will use `Sensor.cpp` and `Sensor.h` .
 The main program will look something like this:
-{{{
+```c++
 void run() 
 {
 switch (mode)
@@ -73,7 +73,7 @@ switch (mode)
     }
   }
 }
-}}}
+```
 
 Make sure that all the variables of run are class members of the sensor class.
 
@@ -81,15 +81,15 @@ Sending message is done by:
 `send("protocol name",msg);`
 
 Receiving message is done by:
-{{{
+```c++
 mode=[number];
 case [number]:
 if (receive_block("msg name")) return;
 myMsg *msg=static_cast<myMsg>(getMsg("msg name"));
-}}}
+```
 
 If you want to have a timeout you can do:
-{{{
+```c++
 mode=[number];
 case [number]:
 if (receive_block("msg name",[time])) return;
@@ -97,14 +97,14 @@ if (msg!=null)
 {
 ...
 }
-}}}
+```
 
 It also support sleep by:
-{{{
+```c++
 mode=[number];
 case [number]:
 if (sleep(time)) return
-}}}
+```
 
 `string getName()` - return the name of the node.
 `float getTime()` - return the time in seconds.
@@ -117,20 +117,20 @@ Using the protocol:
 --------------------------
 `void stackSend(cMessage *data)` - get a message that had to be send.
 Warp it out with something like:
-{{{
+```c++
 protocolMsgType protocolMsg=new protocolMsgType("protocolName");
 protocolMsg->encapsulate(static_cast<cMessage *>(data->dup));
-}}}
+```
 Send it away by: `emu->sendBytes(protocolMsg)`
 In the end we must delete the message by: `delete protocolMsg;`
 
 `void stackReceive(cMessage *msg)` - get a message.
 Unwarp it by: `myMsg *data=static_cast<myMsg>(msg->encapsulatedMsg());
 Free and delete the warper by:
-{{{
+```c++
 msg->decapsulate();
 delete msg;
-}}}
+```
 The threads need to receive the message by `getMsg("message name")` so
 we use `dispatch(data);` transfer the message to the threads.
 If we do that make sure that we do not delete the message.
@@ -142,62 +142,61 @@ for example: `addProtocol("myProtocol*",new myProtocol());`
 Adding threads to the simulator:
 -------------------------------------
 Declaring a thread inside the sensor class by:
-{{{
- 
-    class MyThread;
-    friend class MyThread;
-    class MyThread:public SensorPrototype::SensorThread
-    {
-      friend class Sensor;
-      public:
-      int mode;
-      Sensor *sensor;
-      explicit MyThread(Sensor *);
-      virtual bool emuRun();
-      virtual ~MyThread();
-    };
-}}}
+```c++
+class MyThread;
+friend class MyThread;
+class MyThread:public SensorPrototype::SensorThread
+{
+  friend class Sensor;
+  public:
+  int mode;
+  Sensor *sensor;
+  explicit MyThread(Sensor *);
+  virtual bool emuRun();
+  virtual ~MyThread();
+};
+```
 
 Initialize by:
-{{{
+```c++
 Sensor::MyThread::MyThread(Sensor *s):SensorThread(s)
 {
   mode=0;
   sensor=s;
 }
-}}}
+```
 
 We have to implement emuRun for the thread the same way that we implement run for the sensor.
 Adding a thread is done by: 
-{{{
+```c++
 MyThread *tr=new MyThread(this);
 startThread(tr);
-}}}
+```
 Do not delete this thread it will be done automatically by the program.
 Thread supports all the blocking function that the sensor supports; but in additional it support:
 wait and notify.
 Inside the Thread we can put:
-{{{
+```c++
 mode=[number];
 case [number]:
 if (wait()) return;
-}}}
+```
 Some where else we put:
-{{{
+```c++
 tr.notify();
-}}}
+```
 
 Miscellaneous technical issues:
 ---------------------------------
 The message will contain string with the type char *.
 So if we want to compare it to the node name we need to write:
-{{{
+```c++
 if (getName==string(msg->getId())) ...
-}}}
+```
 And if we want to put the node name on the message we do:
-{{{
+```c++
 msg->setId(getName.c_str());
-}}}
+```
 `setId` copy the c string data to the message.
 
 The message support double type but does not support float type.
