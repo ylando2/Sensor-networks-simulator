@@ -16,7 +16,7 @@ therefore there are some strange design choices.
 I emulate the multithread using coroutine build on a duff device.
 I also used the same technique on tiny-os device; so we can use
 the program written in this simulator on real sensors with tiny-os install on them.
-Those programs are released in a different repository.
+Those programs are released in a [TinyOs-coroutine-framework](https://github.com/ylando2/TinyOs-coroutine-framework) repository.
 
 This simulator works on omnetpp-3.3, if you want to update it to 4,
 You can hire me as a programmer (or consultant) my email is:
@@ -66,7 +66,7 @@ switch (mode)
     //In c++ switch can go into while scope
       mode=1;
       case 1:    
-      // if stopping exit the function other wise continue
+      // if stopping exit the function otherwise continue
       if (stop_func()) return;
     }
   }
