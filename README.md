@@ -5,7 +5,7 @@ Programmer: Yuval Lando
 
 About
 ----------------------
-A few years ago, I try to write programs for sensors.
+A few years ago, I wrote programs and simulations for wireless sensors.
 Sensor are very small (the size of a matchbox) 
 computers with a usb connection and radio device.
 The problem was that I did not see the outcome of the program 
